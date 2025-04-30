@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RestauranteCreateRequest;
 use App\Models\Restaurante;
 use Illuminate\Http\Request;
-use App\Http\Requests\RestauranteRequest;
 
 class RestauranteController extends Controller
 {
@@ -30,7 +30,7 @@ class RestauranteController extends Controller
     }
 
     // Store es la función que se encarga de recibir peticiones POST.
-    public function store(RestauranteRequest $request)
+    public function store(RestauranteCreateRequest $request)
     {
         $restaurante = Restaurante::create($request->validated());
         return response()->json([
