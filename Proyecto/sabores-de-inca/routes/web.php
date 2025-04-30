@@ -10,6 +10,12 @@ use App\Http\Controllers\RestauranteTraduccionController;
 use App\Http\Controllers\TipoCocinaController;
 use App\Http\Controllers\TipoCocinaTraduccionController;
 
+// Prueba
+// Route::get('/debug-api', function () {
+//     require base_path('routes/api.php');
+//     return 'api.php cargado manualmente';
+// });
+
 Route::get('/', function () {
     return view('welcome'); // No borrar. Esto es para cuando entre a la raíz del proyecto.
 });
@@ -32,36 +38,10 @@ Route::get('/tipo-cocina-traduccion/{id}', [TipoCocinaTraduccionController::clas
 
 Route::get('/restaurante', [RestauranteController::class, 'index']);
 Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
+Route::post('/restaurante', [RestauranteController::class, 'store']);
 
 Route::get('/restaurante-accesibilidad', [RestauranteAccesibilidadController::class, 'index']);
 Route::get('/restaurante-accesibilidad/{id}', [RestauranteAccesibilidadController::class, 'show']);
 
 Route::get('/restaurante-traduccion', [RestauranteTraduccionController::class, 'index']);
 Route::get('/restaurante-traduccion/{id}', [RestauranteTraduccionController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-
-// Route::get('/restaurante', [RestauranteController::class, 'index']);
-// Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
