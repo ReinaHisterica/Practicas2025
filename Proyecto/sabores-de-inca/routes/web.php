@@ -38,7 +38,6 @@ Route::get('/tipo-cocina-traduccion/{id}', [TipoCocinaTraduccionController::clas
 
 Route::get('/restaurante', [RestauranteController::class, 'index']);
 Route::get('/restaurante/{id}', [RestauranteController::class, 'show']);
-Route::post('/restaurante', [RestauranteController::class, 'store']);
 
 Route::get('/restaurante-accesibilidad', [RestauranteAccesibilidadController::class, 'index']);
 Route::get('/restaurante-accesibilidad/{id}', [RestauranteAccesibilidadController::class, 'show']);

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RestauranteCreateRequest extends FormRequest
 {
@@ -22,7 +24,7 @@ class RestauranteCreateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'Nombre' => 'unique:restaurante,Nombre|required|string|max:25',
+            'Nombre' => 'required|string|max:25',
             'RangoPrecio' => 'required|string|max:6',
             'Vegano' => 'required|boolean',
             'Telefono' => 'required|string|max:20',
@@ -30,7 +32,7 @@ class RestauranteCreateRequest extends FormRequest
             'Direccion' => 'required|string|max:150',
             'Carta' => 'nullable|string|max:255',
             'fk_idTipoCocina' => 'required|exists:tipo_cocina,idTipoCocina' // Para las foreign keys. Primero se pone el nombre de la tabla relacionada y luego la primary key.
-            // ⚠🚨 IMPORTNATE: DONDE LAS FOREIGN KEYS NO PUEDE HABER ESPACIOS, POR EJEMPLO, 'required|exists:tipo_cocina, idTipoCocina' DARÁ ERROR POR EL ESPACIO ENTRE tipo_cocina, y idTipoCocina ⚠🚨
+            // ⚠🚨 IMPORTNATE: DONDE LAS FOREIGN KEYS NO PUEDE HABER ESPACIOS, POR EJEMPLO, 'required|exists:tipo_cocina, idTipoCocina' DARÁ ERROR POR EL ESPACIO ENTRE tipo_cocina, y idTipoCocina ⚠🚨.
             /* 
             {
                 "Nombre": "Prueba",
@@ -52,7 +54,6 @@ class RestauranteCreateRequest extends FormRequest
     {
         return [
             'Nombre.required' => 'El nombre del restaurante es obligatorio.',
-            'Nombre.unique' => 'Ya existe un restaurante con ese nombre.',
             'Nombre.max' => 'El nombre no puede superar los 25 caracteres.',
             'RangoPrecio.required' => 'El rango de precio es obligatorio.',
             'Vegano.required' => 'Debes especificar si tiene opciones veganas.',
@@ -64,5 +65,14 @@ class RestauranteCreateRequest extends FormRequest
             'fk_idTipoCocina.required' => 'Debes seleccionar un tipo de cocina.',
             'fk_idTipoCocina.exists' => 'El tipo de cocina seleccionado no es válido.',
         ];
+    }
+
+    // Función para devolver un error si algo ha fallado (datos inválidos).
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'mensaje' => 'Error de validación.',
+            'errores' => $validator->errors()
+        ], 422)); // Error 422: Unprocessable Entity (datos inválidos).
     }
 }
