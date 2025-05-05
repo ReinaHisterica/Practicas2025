@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Tareas con Vue.js</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2rem;
+    }
+    .completada {
+      text-decoration: line-through;
+      color: gray;
+    }
+    button {
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app">
+    <h1>📝 Lista de Tareas</h1>
+
+    <input v-model="nuevaTarea" placeholder="Escribe una tarea" @keyup.enter="agregarTarea">
+    <button @click="agregarTarea">Agregar</button>
+
+    <ul>
+      <li v-for="(tarea, index) in tareas" :key="index">
+        <span :class="{ completada: tarea.completada }" @click="toggleTarea(index)">
+          {{ tarea.texto }}
+        </span>
+        <button @click="eliminarTarea(index)">❌</button>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        nuevaTarea: '',
+        tareas: []
+      },
+      methods: {
+        agregarTarea() {
+          if (this.nuevaTarea.trim() !== '') {
+            this.tareas.push({ texto: this.nuevaTarea, completada: false });
+            this.nuevaTarea = '';
+          }
+        },
+        eliminarTarea(index) {
+          this.tareas.splice(index, 1);
+        },
+        toggleTarea(index) {
+          this.tareas[index].completada = !this.tareas[index].completada;
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>

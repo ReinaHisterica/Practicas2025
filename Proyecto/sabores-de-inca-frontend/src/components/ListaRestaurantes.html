@@ -1,0 +1,11 @@
+<template>
+    <div>
+      <h2>Restaurantes</h2>
+      <ul>
+        <li v-for="restaurante in restaurantes" :key="restaurante.id">
+          {{ restaurante.nombre }} - {{ restaurante.tipo_cocina }}
+        </li>
+      </ul>
+    </div>
+  </template>
+  
