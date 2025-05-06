@@ -2,9 +2,13 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\RestauranteController;
 use App\Http\Controllers\TipoCocinaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TipoCocinaTraduccionController;
 use App\Http\Controllers\AccesibilidadController;
 use App\Http\Controllers\AccesibilidadTraduccionController;
@@ -18,6 +22,18 @@ require base_path('routes/test.php');
 Route::get('/prueba', function () {
     return '¡Funciona!';
 });
+
+// Ruta para registro de usuario.
+Route::post('register', [UserController::class, 'store']);
+
+// Ruta para login de usuario (autenticación).
+Route::post('login', [AuthController::class, 'login']);
+
+// Rutas protegidas (necesitas un token para poder acceder a ellas).
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
+
 // Rutas API para restaurantes
 Route::prefix('restaurantes')->group(function () {
     Route::get('/', [RestauranteController::class, 'index']);
