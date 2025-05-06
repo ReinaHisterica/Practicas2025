@@ -75,9 +75,9 @@ FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante (idRestaurante)
 
 CREATE TABLE Usuario(
 idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-Username Varchar(100),
-Email Varchar(30),
-Password Varchar(40),
+Username Varchar(100) UNIQUE NOT NULL,
+Email Varchar(30) UNIQUE NOT NULL,
+Password Varchar(40) NOT NULL,
 FechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
