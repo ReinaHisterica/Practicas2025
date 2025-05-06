@@ -73,14 +73,15 @@ AltText Varchar(50),
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante (idRestaurante)
 );
 
-CREATE TABLE Usuario(
-idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-Username Varchar(100),
-Email Varchar(30),
-Password Varchar(40),
-FechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE Usuario (
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(100) UNIQUE NOT NULL,
+    Email VARCHAR(30) UNIQUE NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Profile_Image VARCHAR(255) DEFAULT 'images/default-profile.png',
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL
 );
-
 
 CREATE TABLE Valoracion(
 idValoracion INT AUTO_INCREMENT PRIMARY KEY,
