@@ -46,5 +46,5 @@ Route::get('/', function () {
 // Route::get('/restaurante-traduccion/{id}', [RestauranteTraduccionController::class, 'show']);
 
 Route::get('/login', function () {
-    return 'Aquí irá el formulario de login';
+    return response()->json(['error' => 'Credenciales incorrectas.'], 401);
 })->name('login');
