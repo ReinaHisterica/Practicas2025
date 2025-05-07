@@ -45,6 +45,6 @@ Route::get('/', function () {
 // Route::get('/restaurante-traduccion', [RestauranteTraduccionController::class, 'index']);
 // Route::get('/restaurante-traduccion/{id}', [RestauranteTraduccionController::class, 'show']);
 
-// Route::get('/login', function () {
-//     return 'Página de login aún no implementada';
-// })->name('login');
+Route::get('/login', function () {
+    return 'Aquí irá el formulario de login';
+})->name('login');
