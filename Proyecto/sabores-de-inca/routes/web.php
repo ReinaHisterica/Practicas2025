@@ -6,6 +6,7 @@ use App\Http\Controllers\AccesibilidadTraduccionController;
 use App\Http\Controllers\IdiomaController;
 use App\Http\Controllers\RestauranteAccesibilidadController;
 use App\Http\Controllers\RestauranteController;
+use App\Models\Restaurante; // Para hacer la vista con Blade.
 use App\Http\Controllers\RestauranteTraduccionController;
 use App\Http\Controllers\TipoCocinaController;
 use App\Http\Controllers\TipoCocinaTraduccionController;
@@ -18,6 +19,12 @@ use App\Http\Controllers\TipoCocinaTraduccionController;
 
 Route::get('/', function () {
     return view('welcome'); // No borrar. Esto es para cuando entre a la raíz del proyecto.
+});
+
+Route::get('/prueba', function () {
+    $restaurantes = Restaurante::all(); # $restaurantes es la variable que voy a utilizar en el resto de archivos para obtener los datos de los restaurantes.
+    // dd($restaurantes);
+    return view('prueba', compact('restaurantes')); # Sintaxis: Hace un return de la vista y devuelve los datos de la variable.
 });
 
 // // Una ruta por cada tabla.
