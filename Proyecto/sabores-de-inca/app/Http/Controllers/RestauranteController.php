@@ -81,4 +81,26 @@ class RestauranteController extends Controller
             ], 404);
         }
     }
+    public function subirImagen(Request $request, $id) // Aparte de las funciones store, destroy... también puedo crear yo unas propias. 
+    {
+        // Valido la Foto.
+        $request->validate([
+            'Foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $restaurante = Restaurante::findOrFail($id);
+
+        // Subo la Foto.
+        if ($request->hasFile('Foto')) {
+            $imagenPath = $request->file('Foto')->store('public/imagenes');
+
+            // Aquí guardo la ruta de la Foto en el modelo.
+            $restaurante->Foto = $imagenPath;
+            $restaurante->save();
+
+            return response()->json(['success' => 'Foto subida correctamente', 'path' => $imagenPath]);
+        }
+
+        return response()->json(['error' => 'Se ha producido un error. No se ha subido ninguna Foto.'], 400);
+    }
 }

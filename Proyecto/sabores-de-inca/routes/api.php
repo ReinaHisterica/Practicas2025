@@ -41,6 +41,7 @@ Route::prefix('restaurantes')->group(function () {
     Route::post('/', [RestauranteController::class, 'store']);
     Route::put('/{id}', [RestauranteController::class, 'update']);
     Route::delete('/{id}', [RestauranteController::class, 'destroy']);
+    Route::post('/{id}/imagen', [RestauranteController::class, 'subirImagen']); // Ruta para subir imágenes.
 
 });
 

@@ -10,7 +10,7 @@
     @else
         <ul>
             @foreach ($restaurantes as $restaurante)
-                <li><strong>{{ $restaurante->Nombre }}</strong> - {{ $restaurante->Direccion }} - {{$restaurante->Vegano ? 'Sí' : 'No'}}</li>
+                <li class="restaurante"><strong>{{ $restaurante->Nombre }}</strong> - {{ $restaurante->Direccion }} - {{$restaurante->Vegano ? 'Sí' : 'No'}}</li>
             @endforeach
         </ul>
     @endif
