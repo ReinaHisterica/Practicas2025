@@ -92,7 +92,7 @@ class RestauranteController extends Controller
 
         // Subo la Foto.
         if ($request->hasFile('Foto')) {
-            $imagenPath = $request->file('Foto')->store('public/imagenes');
+            $imagenPath = $request->file('Foto')->store('imagenes', 'public'); // Laravel usará la carpeta storage/app/public/imagenes para guardar las imágenes. Es una carpeta accesible para Laravel.
 
             // Aquí guardo la ruta de la Foto en el modelo.
             $restaurante->Foto = $imagenPath;

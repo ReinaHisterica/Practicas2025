@@ -22,7 +22,7 @@
     </main>
 
     <footer style="background-color: #f8f8f8; padding: 1rem; text-align: center;">
-        <p>&copy; {{ date('Y') }} Sabores de Inca. Todos los derechos reservados.</p> 
+        <p>&copy; {{ date('Y') }} Sabores de Inca. Todos los derechos reservados.</p>
     </footer>
 </body>
 </html>
