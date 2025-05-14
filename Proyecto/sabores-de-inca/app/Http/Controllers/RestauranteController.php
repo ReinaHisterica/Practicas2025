@@ -15,7 +15,9 @@ class RestauranteController extends Controller
     public function index()
     {
         $restaurantes = Restaurante::all();
+        // $restaurantes = Restaurante::paginate(4); // Para mostrarlos de 4 en 4.
         return response()->json($restaurantes);
+        // return view('prueba', compact('restaurantes'));
         // dd($restaurantes); # Muestra los datos que se están pasando a la vista.
         // return view('restaurantes.index', compact('restaurantes')); # Esto es una vista
     }

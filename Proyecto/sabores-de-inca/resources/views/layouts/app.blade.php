@@ -1,20 +1,23 @@
 <!-- Esta va a ser la plantilla de los documentos del proyecto. -->
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo', 'Sabors d\'Inca')</title> <!-- Esto del yield es como los block que hay en Flask. Este bloque es el del título. -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    @vite('resources/css/app.css')
 </head>
+
 <body>
     <header style="background-color:rgb(253, 0, 0); padding: 1rem;">
-        <h1 style="margin: 0;">Sabores de Inca</h1> 
+        <h1 style="margin: 0;">Sabores de Inca</h1>
     </header>
 
     <nav style="background-color: #eee; padding: 0.5rem;">
         <a href="/" style="margin-right: 1rem;">Inicio</a>
-        <a href="/prueba">Restaurantes</a>
+        <a href="/restaurantes" style="margin-right: 1rem;">Restaurantes</a>
+        <a href="/quiensoy" style="margin-right: 1rem;">Quién soy</a>
     </nav>
 
     <main style="padding: 2rem;">
@@ -25,4 +28,5 @@
         <p>&copy; {{ date('Y') }} Sabores de Inca. Todos los derechos reservados.</p>
     </footer>
 </body>
+
 </html>
