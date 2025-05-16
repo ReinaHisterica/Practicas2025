@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('titulo', 'Lista de Restaurantes')
-
-@section('contenido')
+@vite('resources/js/restaurantes.js')>  <!-- Esto importará el js exclusivamente en la página de los restaurantes. -->
+@section('contenido') 
 <h2>Filtrar</h2>
 <form method="POST">
     <label for="vegano">¿Vegano?</label>
@@ -16,7 +16,7 @@
 @if ($restaurantes->isEmpty())
 <p>No hay restaurantes todavía.</p>
 @else
-<div class="restaurantes-container">
+<div class="restaurantes-container" id="restaurantList">
     @foreach ($restaurantes as $restaurante)
     <div class="restaurante-card">
         <img src="{{ Storage::url($restaurante->Foto) }}" alt="Foto del restaurante">
