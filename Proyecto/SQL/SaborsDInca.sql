@@ -43,6 +43,7 @@ Telefono Varchar(20), # +34 xxx xxx xxx
 SitioWeb Varchar(100), # URL
 Direccion Varchar(150),
 Carta Varchar(255), # Se guardará la ruta del archivo.
+Foto Varchar(255),
 fk_idTipoCocina INT,
 FOREIGN KEY (fk_idTipoCocina) REFERENCES Tipo_Cocina(idTipoCocina)
 );
@@ -88,7 +89,6 @@ idValoracion INT AUTO_INCREMENT PRIMARY KEY,
 fk_idUsuario INT,
 fk_idRestaurante INT,
 Comentario TEXT,
-Fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
 Valoracion INT,
 FOREIGN KEY (fk_idUsuario) REFERENCES Usuario (idUsuario),
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante(idRestaurante)
