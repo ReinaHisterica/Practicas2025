@@ -15,6 +15,7 @@ use App\Http\Controllers\AccesibilidadTraduccionController;
 use App\Http\Controllers\IdiomaController;
 use App\Http\Controllers\RestauranteAccesibilidadController;
 use App\Http\Controllers\RestauranteTraduccionController;
+use App\Http\Controllers\ValoracionController;
 
 require base_path('routes/test.php');
 
@@ -33,6 +34,7 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::middleware('auth:sanctum')->post('/valoracion', [ValoracionController::class, 'store']);
 
 // Rutas API para restaurantes
 Route::prefix('restaurantes')->group(function () {
