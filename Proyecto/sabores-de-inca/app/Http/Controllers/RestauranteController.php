@@ -14,12 +14,8 @@ class RestauranteController extends Controller
     // Index para mostrar todos los elementos de la tabla.
     public function index()
     {
-        $restaurantes = Restaurante::all();
-        // $restaurantes = Restaurante::paginate(4); // Para mostrarlos de 4 en 4.
-        return response()->json($restaurantes);
-        // return view('prueba', compact('restaurantes'));
-        // dd($restaurantes); # Muestra los datos que se están pasando a la vista.
-        // return view('restaurantes.index', compact('restaurantes')); # Esto es una vista
+    $restaurantes = Restaurante::with('valoraciones')->get();
+    return view('restaurantes.index', compact('restaurantes'));
     }
 
     // Show es para mostrar un elemento en específico.
