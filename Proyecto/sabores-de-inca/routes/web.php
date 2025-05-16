@@ -24,7 +24,7 @@ Route::get('/', function () {
 Route::get('/restaurantes', function () {
     $restaurantes = Restaurante::all(); # $restaurantes es la variable que voy a utilizar en el resto de archivos para obtener los datos de los restaurantes.
     // dd($restaurantes);
-    return view('prueba', compact('restaurantes')); # Sintaxis: Hace un return de la vista y devuelve los datos de la variable.
+    return view('restaurantes.index', compact('restaurantes')); # Sintaxis: Hace un return de la vista y devuelve los datos de la variable.
 });
 
 // // Una ruta por cada tabla.
