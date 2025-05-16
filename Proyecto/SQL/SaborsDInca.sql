@@ -43,6 +43,7 @@ Telefono Varchar(20), # +34 xxx xxx xxx
 SitioWeb Varchar(100), # URL
 Direccion Varchar(150),
 Carta Varchar(255), # Se guardará la ruta del archivo.
+Foto Varchar(255),
 fk_idTipoCocina INT,
 FOREIGN KEY (fk_idTipoCocina) REFERENCES Tipo_Cocina(idTipoCocina)
 );
@@ -73,21 +74,21 @@ AltText Varchar(50),
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante (idRestaurante)
 );
 
-CREATE TABLE Usuario(
-idUsuario INT AUTO_INCREMENT PRIMARY KEY,
-Username Varchar(100),
-Email Varchar(30),
-Password Varchar(40),
-FechaCreacion DATETIME DEFAULT CURRENT_TIMESTAMP
+CREATE TABLE Usuario (
+    idUsuario INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(100) UNIQUE NOT NULL,
+    Email VARCHAR(30) UNIQUE NOT NULL,
+    Password VARCHAR(255) NOT NULL,
+    Profile_Image VARCHAR(255) DEFAULT 'images/default-profile.png',
+    created_at TIMESTAMP NULL DEFAULT NULL,
+    updated_at TIMESTAMP NULL DEFAULT NULL
 );
-
 
 CREATE TABLE Valoracion(
 idValoracion INT AUTO_INCREMENT PRIMARY KEY,
 fk_idUsuario INT,
 fk_idRestaurante INT,
 Comentario TEXT,
-Fecha DATETIME DEFAULT CURRENT_TIMESTAMP,
 Valoracion INT,
 FOREIGN KEY (fk_idUsuario) REFERENCES Usuario (idUsuario),
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante(idRestaurante)

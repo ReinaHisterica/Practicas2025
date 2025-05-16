@@ -2,15 +2,20 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\RestauranteController;
 use App\Http\Controllers\TipoCocinaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\TipoCocinaTraduccionController;
 use App\Http\Controllers\AccesibilidadController;
 use App\Http\Controllers\AccesibilidadTraduccionController;
 use App\Http\Controllers\IdiomaController;
 use App\Http\Controllers\RestauranteAccesibilidadController;
 use App\Http\Controllers\RestauranteTraduccionController;
+use App\Http\Controllers\ValoracionController;
 
 require base_path('routes/test.php');
 
@@ -18,6 +23,19 @@ require base_path('routes/test.php');
 Route::get('/prueba', function () {
     return '¡Funciona!';
 });
+
+// Ruta para registro de usuario.
+Route::post('register', [UserController::class, 'store']);
+
+// Ruta para login de usuario (autenticación).
+Route::post('login', [AuthController::class, 'login']);
+
+// Rutas protegidas (necesitas un token para poder acceder a ellas).
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return $request->user();
+});
+Route::middleware('auth:sanctum')->post('/valoracion', [ValoracionController::class, 'store']);
+
 // Rutas API para restaurantes
 Route::prefix('restaurantes')->group(function () {
     Route::get('/', [RestauranteController::class, 'index']);
@@ -25,6 +43,7 @@ Route::prefix('restaurantes')->group(function () {
     Route::post('/', [RestauranteController::class, 'store']);
     Route::put('/{id}', [RestauranteController::class, 'update']);
     Route::delete('/{id}', [RestauranteController::class, 'destroy']);
+    Route::post('/{id}/imagen', [RestauranteController::class, 'subirImagen']); // Ruta para subir imágenes.
 
 });
 

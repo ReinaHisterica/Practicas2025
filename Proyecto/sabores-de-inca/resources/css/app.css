@@ -1,11 +1,53 @@
-@import 'tailwindcss';
+/* Contenedor de los restaurantes */
+.restaurantes-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+    padding: 20px;
+}
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source '../**/*.blade.php';
-@source '../**/*.js';
+/* Cada tarjeta de restaurante */
+.restaurante-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 250px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+.restaurante-card:hover {
+    transform: scale(1.05);
+}
+
+/* Foto del restaurante */
+.restaurante-card img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Nombre y detalles del restaurante */
+.restaurante-card .details {
+    padding: 15px;
+    text-align: center;
+}
+
+.restaurante-card .details h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.restaurante-card .details p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Estilo de las imágenes */
+.restaurante-card img {
+    max-height: 200px; /* Limitar la altura para que no se vea gigante */
 }
