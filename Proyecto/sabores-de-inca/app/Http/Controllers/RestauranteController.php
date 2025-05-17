@@ -12,13 +12,23 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RestauranteController extends Controller
 {
     // Index para mostrar todos los elementos de la tabla.
-    public function index()
+    public function index(Request $request)
     {
-        $restaurantes = Restaurante::all();
-        return response()->json($restaurantes);
-        // dd($restaurantes); # Muestra los datos que se están pasando a la vista.
-        // return view('restaurantes.index', compact('restaurantes')); # Esto es una vista
+        $query = Restaurante::with('valoraciones');
+
+        if ($request->has('vegano') && $request->vegano == 1) {
+            $query->where('Vegano', true); // columna con mayúscula
+        }
+
+        $restaurantes = $query->get();
+
+        if ($request->ajax()) {
+            return view('restaurantes._lista', compact('restaurantes'));
+        }
+
+        return view('restaurantes.index', compact('restaurantes'));
     }
+
 
     // Show es para mostrar un elemento en específico.
     public function show($id)
@@ -80,5 +90,27 @@ class RestauranteController extends Controller
                 'error' => 'El restaurante con el ID proporcionado no existe.'
             ], 404);
         }
+    }
+    public function subirImagen(Request $request, $id) // Aparte de las funciones store, destroy... también puedo crear yo unas propias. 
+    {
+        // Valido la Foto.
+        $request->validate([
+            'Foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $restaurante = Restaurante::findOrFail($id);
+
+        // Subo la Foto.
+        if ($request->hasFile('Foto')) {
+            $imagenPath = $request->file('Foto')->store('imagenes', 'public'); // Laravel usará la carpeta storage/app/public/imagenes para guardar las imágenes. Es una carpeta accesible para Laravel.
+
+            // Aquí guardo la ruta de la Foto en el modelo.
+            $restaurante->Foto = $imagenPath;
+            $restaurante->save();
+
+            return response()->json(['success' => 'Foto subida correctamente', 'path' => $imagenPath]);
+        }
+
+        return response()->json(['error' => 'Se ha producido un error. No se ha subido ninguna Foto.'], 400);
     }
 }
