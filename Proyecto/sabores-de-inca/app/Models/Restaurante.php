@@ -26,7 +26,7 @@ class Restaurante extends Model
 
     // Para obtener la media de las valoraciones. Primero, necesitamos una relación entre ambas tablas. Mirar la línea extra del controlador.
     // Relación con valoraciones
-    public function valoraciones(): HasMany
+    public function valoraciones()
     {
         return $this->hasMany(Valoracion::class, 'fk_idRestaurante', 'idRestaurante');
     }
