@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('titulo', 'Lista de Restaurantes')
-@vite('resources/js/restaurantes.js')> <!-- Esto importará el js exclusivamente en la página de los restaurantes. -->
+@vite('resources/js/restaurantes.js') <!-- Esto importará el js exclusivamente en la página de los restaurantes. -->
 @section('contenido')
 <h2>Filtrar</h2>
 <form method="POST">
