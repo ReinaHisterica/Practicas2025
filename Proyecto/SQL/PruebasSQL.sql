@@ -22,6 +22,10 @@ SELECT * FROM Idioma;
 -- Obtener la media de valoracion de un restaurante
 SELECT TRUNCATE((SUM(v.Valoracion) / COUNT(v.Valoracion)), 1) AS "Media" FROM Valoracion v JOIN Restaurante r ON v.fk_idRestaurante = r.idRestaurante WHERE fk_idRestaurante = 1;
 
-ALTER TABLE valoracion
+ALTER TABLE Valoracion
+ADD COLUMN created_at TIMESTAMP NULL,
+ADD COLUMN updated_at TIMESTAMP NULL;
+
+ALTER TABLE Restaurante
 ADD COLUMN created_at TIMESTAMP NULL,
 ADD COLUMN updated_at TIMESTAMP NULL;

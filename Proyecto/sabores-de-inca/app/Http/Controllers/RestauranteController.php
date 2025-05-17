@@ -14,9 +14,17 @@ class RestauranteController extends Controller
     // Index para mostrar todos los elementos de la tabla.
     public function index()
     {
-    $restaurantes = Restaurante::with('valoraciones')->get();
-    return view('restaurantes.index', compact('restaurantes'));
+        // Obtener todos los restaurantes con sus valoraciones
+        $restaurantes = Restaurante::with('valoraciones')->get();
+
+        // Ordenar por media de valoración
+        $restaurantes = $restaurantes->sortByDesc(function ($r) {
+            return $r->valoraciones->avg('Valoracion') ?? 0;
+        })->values(); // Reindexa el array tras ordenar
+
+        return view('restaurantes.index', compact('restaurantes'));
     }
+
 
     // Show es para mostrar un elemento en específico.
     public function show($id)
