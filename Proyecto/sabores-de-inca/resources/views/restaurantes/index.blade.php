@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('titulo', 'Lista de Restaurantes')
-@vite('resources/js/restaurantes.js')>  <!-- Esto importará el js exclusivamente en la página de los restaurantes. -->
-@section('contenido') 
+@vite('resources/js/restaurantes.js')> <!-- Esto importará el js exclusivamente en la página de los restaurantes. -->
+@section('contenido')
 <h2>Filtrar</h2>
 <form method="POST">
     <label for="vegano">¿Vegano?</label>
@@ -17,21 +17,10 @@
 <p>No hay restaurantes todavía.</p>
 @else
 <div class="restaurantes-container" id="restaurantList">
-    @foreach ($restaurantes as $restaurante)
-    <div class="restaurante-card">
-        <img src="{{ Storage::url($restaurante->Foto) }}" alt="Foto del restaurante">
-        <div class="details">
-            <h3>{{ $restaurante->Nombre }}</h3>
-            <p>{{ $restaurante->Direccion }}</p>
-            <p>Vegano: {{ $restaurante->Vegano ? 'Sí' : 'No' }}</p>
-            <p>Media:
-                {{ number_format(
-            $restaurante->valoraciones->avg('Valoracion'), 
-            1, '.', '') }}
-            </p>
-        </div>
+    <div class="restaurantes-container" id="restaurantList">
+        @include('restaurantes._lista')
     </div>
-    @endforeach
+
 </div>
 @endif
 @endsection

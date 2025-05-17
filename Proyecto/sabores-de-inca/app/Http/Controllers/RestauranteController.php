@@ -12,15 +12,19 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class RestauranteController extends Controller
 {
     // Index para mostrar todos los elementos de la tabla.
-    public function index()
+    public function index(Request $request)
     {
-        // Obtener todos los restaurantes con sus valoraciones
-        $restaurantes = Restaurante::with('valoraciones')->get();
+        $query = Restaurante::with('valoraciones');
 
-        // Ordenar por media de valoración
-        $restaurantes = $restaurantes->sortByDesc(function ($r) {
-            return $r->valoraciones->avg('Valoracion') ?? 0;
-        })->values(); // Reindexa el array tras ordenar
+        if ($request->has('vegano') && $request->vegano == 1) {
+            $query->where('Vegano', true); // columna con mayúscula
+        }
+
+        $restaurantes = $query->get();
+
+        if ($request->ajax()) {
+            return view('restaurantes._lista', compact('restaurantes'));
+        }
 
         return view('restaurantes.index', compact('restaurantes'));
     }
