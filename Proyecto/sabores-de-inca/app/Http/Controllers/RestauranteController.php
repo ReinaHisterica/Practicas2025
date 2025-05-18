@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\DB;
 class RestauranteController extends Controller
 {
     // Index para mostrar todos los elementos de la tabla.
-
     public function index(Request $request)
     {
         // Empezamos la query con la relación de valoraciones
@@ -41,6 +40,20 @@ class RestauranteController extends Controller
     }
 
 
+    // Este método sería usado desde `api.php`
+    public function indexApi(Request $request)
+    {
+        $query = Restaurante::with('valoraciones')
+            ->withAvg('valoraciones as promedio_valoracion', 'Valoracion');
+
+        if ($request->has('vegano') && $request->vegano == 1) {
+            $query->where('Vegano', true);
+        }
+
+        $query->orderByDesc('promedio_valoracion');
+
+        return response()->json($query->get());
+    }
 
     // Show es para mostrar un elemento en específico.
     public function show($id)

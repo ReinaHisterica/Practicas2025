@@ -47,6 +47,10 @@ Foto Varchar(255),
 fk_idTipoCocina INT,
 FOREIGN KEY (fk_idTipoCocina) REFERENCES Tipo_Cocina(idTipoCocina)
 );
+ALTER TABLE Restaurante
+ADD Latitud DOUBLE NULL,
+ADD Longitud DOUBLE NULL;
+
 
 CREATE TABLE Restaurante_Accesibilidad(
 idRestauranteAccesible INT AUTO_INCREMENT PRIMARY KEY,

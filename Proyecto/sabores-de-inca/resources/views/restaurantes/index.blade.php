@@ -22,5 +22,7 @@
     </div>
 
 </div>
+<div id="map" style="height: 500px; margin-bottom: 2rem;"></div>
+
 @endif
 @endsection

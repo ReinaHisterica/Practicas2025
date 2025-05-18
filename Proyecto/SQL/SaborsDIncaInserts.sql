@@ -1420,3 +1420,7 @@ INSERT INTO RESTAURANTE_TRADUCCION (Descripcion, Horario, fk_idRestaurante, fk_i
 INSERT INTO RESTAURANTE_TRADUCCION (Descripcion, Horario, fk_idRestaurante, fk_idIdioma) VALUES ();
 INSERT INTO RESTAURANTE_TRADUCCION (Descripcion, Horario, fk_idRestaurante, fk_idIdioma) VALUES (); */
 
+-- LATITUD Y LONGITUD
+UPDATE RESTAURANTE
+SET Latitud = 39.719479 AND Longitud = 2.9060211 WHERE idRestaurante = 5;
+

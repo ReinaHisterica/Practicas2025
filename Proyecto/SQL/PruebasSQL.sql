@@ -29,3 +29,6 @@ ADD COLUMN updated_at TIMESTAMP NULL;
 ALTER TABLE Restaurante
 ADD COLUMN created_at TIMESTAMP NULL,
 ADD COLUMN updated_at TIMESTAMP NULL;
+
+-- Ver los atributos de una tabla.
+DESCRIBE Restaurante;
