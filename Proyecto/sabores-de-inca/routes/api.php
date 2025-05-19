@@ -39,6 +39,7 @@ Route::middleware('auth:sanctum')->post('/valoracion', [ValoracionController::cl
 // Rutas API para restaurantes
 Route::prefix('restaurantes')->group(function () {
     // Route::get('/', [RestauranteController::class, 'index']);
+    Route::get('/', [RestauranteController::class, 'indexApi']);
     Route::get('/{id}', [RestauranteController::class, 'show']);
     Route::post('/', [RestauranteController::class, 'store']);
     Route::put('/{id}', [RestauranteController::class, 'update']);

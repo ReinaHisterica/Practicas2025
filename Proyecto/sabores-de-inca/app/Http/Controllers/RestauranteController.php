@@ -7,6 +7,7 @@ use App\Http\Requests\RestauranteUpdateRequest;
 use App\Models\Restaurante;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 
 class RestauranteController extends Controller
@@ -14,21 +15,45 @@ class RestauranteController extends Controller
     // Index para mostrar todos los elementos de la tabla.
     public function index(Request $request)
     {
-        $query = Restaurante::with('valoraciones');
+        // Empezamos la query con la relación de valoraciones
+        $query = Restaurante::with('valoraciones')
+            ->withAvg('valoraciones as promedio_valoracion', 'Valoracion');
 
+        // Si se solicita el filtro vegano, lo aplicamos
         if ($request->has('vegano') && $request->vegano == 1) {
-            $query->where('Vegano', true); // columna con mayúscula
+            $query->where('Vegano', true); // Recuerda: columna con mayúscula
         }
 
+        // Ordenamos por valoración promedio de mayor a menor
+        $query->orderByDesc('promedio_valoracion');
+
+        // Ejecutamos la consulta
         $restaurantes = $query->get();
 
+        // Si es una petición AJAX, devolvemos solo el fragmento de lista
         if ($request->ajax()) {
             return view('restaurantes._lista', compact('restaurantes'));
         }
 
+        // Si no es AJAX, devolvemos la vista completa
         return view('restaurantes.index', compact('restaurantes'));
     }
 
+
+    // Este método sería usado desde `api.php`
+    public function indexApi(Request $request)
+    {
+        $query = Restaurante::with('valoraciones')
+            ->withAvg('valoraciones as promedio_valoracion', 'Valoracion');
+
+        if ($request->has('vegano') && $request->vegano == 1) {
+            $query->where('Vegano', true);
+        }
+
+        $query->orderByDesc('promedio_valoracion');
+
+        return response()->json($query->get());
+    }
 
     // Show es para mostrar un elemento en específico.
     public function show($id)
