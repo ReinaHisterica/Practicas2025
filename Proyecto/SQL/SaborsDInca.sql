@@ -44,12 +44,11 @@ SitioWeb Varchar(100), # URL
 Direccion Varchar(150),
 Carta Varchar(255), # Se guardará la ruta del archivo.
 Foto Varchar(255),
+Latitud Double,
+Longitud Double,
 fk_idTipoCocina INT,
 FOREIGN KEY (fk_idTipoCocina) REFERENCES Tipo_Cocina(idTipoCocina)
 );
-ALTER TABLE Restaurante
-ADD Latitud DOUBLE NULL,
-ADD Longitud DOUBLE NULL;
 
 
 CREATE TABLE Restaurante_Accesibilidad(
@@ -94,6 +93,8 @@ fk_idUsuario INT,
 fk_idRestaurante INT,
 Comentario TEXT,
 Valoracion INT,
+created_at TIMESTAMP NULL DEFAULT NULL,
+updated_at TIMESTAMP NULL DEFAULT NULL,
 FOREIGN KEY (fk_idUsuario) REFERENCES Usuario (idUsuario),
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante(idRestaurante)
 );
