@@ -3,13 +3,17 @@ CREATE DATABASE SaboresDeInca;
 USE SaboresDeInca;
 
 CREATE TABLE Tipo_Cocina(
-idTipoCocina INT AUTO_INCREMENT PRIMARY KEY
+idTipoCocina INT AUTO_INCREMENT PRIMARY KEY,
+created_at TIMESTAMP ,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp
 );
 
 CREATE TABLE Idioma(
 idIdioma INT AUTO_INCREMENT PRIMARY KEY,
 Nombre Varchar(10),
-CodigoIdioma Varchar(2)
+CodigoIdioma Varchar(2),
+created_at TIMESTAMP NULL DEFAULT current_timestamp,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp
 );
 
 CREATE TABLE Tipo_Cocina_Traduccion(
@@ -17,6 +21,8 @@ idTipoCocinaTraduccion INT AUTO_INCREMENT PRIMARY KEY,
 Nombre Varchar(25),
 fk_idIdioma INT,
 fk_idTipoCocina INT,
+created_at TIMESTAMP NULL DEFAULT current_timestamp,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp,
 FOREIGN KEY (fk_idIdioma) REFERENCES Idioma(idIdioma),
 FOREIGN KEY (fk_idTipoCocina) REFERENCES Tipo_Cocina(idTipoCocina)
 );
@@ -30,6 +36,8 @@ idAccesibilidadTraduccion INT AUTO_INCREMENT PRIMARY KEY,
 Nombre Varchar(50),
 fk_idIdioma INT,
 fk_idAccesibilidad INT,
+created_at TIMESTAMP NULL DEFAULT current_timestamp,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp,
 FOREIGN KEY (fk_idIdioma) REFERENCES Idioma(idIdioma),
 FOREIGN KEY (fk_idAccesibilidad) REFERENCES Accesibilidad(idAccesibilidad)
 );
@@ -46,6 +54,8 @@ Carta Varchar(255), # Se guardará la ruta del archivo.
 Foto Varchar(255),
 Latitud Double,
 Longitud Double,
+created_at TIMESTAMP NULL DEFAULT current_timestamp,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp,
 fk_idTipoCocina INT,
 FOREIGN KEY (fk_idTipoCocina) REFERENCES Tipo_Cocina(idTipoCocina)
 );
@@ -55,6 +65,8 @@ CREATE TABLE Restaurante_Accesibilidad(
 idRestauranteAccesible INT AUTO_INCREMENT PRIMARY KEY,
 fk_idRestaurante INT,
 fk_idAccesibilidad INT,
+created_at TIMESTAMP NULL DEFAULT current_timestamp,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp,
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante (idRestaurante),
 FOREIGN KEY (fk_idAccesibilidad) REFERENCES Accesibilidad (idAccesibilidad)
 );
@@ -65,6 +77,8 @@ Descripcion TEXT,
 Horario Varchar(350),
 fk_idRestaurante INT,
 fk_idIdioma INT,
+created_at TIMESTAMP NULL DEFAULT current_timestamp,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp,
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante(idRestaurante),
 FOREIGN KEY (fk_idIdioma) REFERENCES Idioma(idIdioma)
 );
@@ -74,6 +88,8 @@ idImagen INT AUTO_INCREMENT PRIMARY KEY,
 fk_idRestaurante INT,
 Url Varchar(255),
 AltText Varchar(50),
+created_at TIMESTAMP NULL DEFAULT current_timestamp,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp,
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante (idRestaurante)
 );
 
@@ -83,8 +99,8 @@ CREATE TABLE Usuario (
     Email VARCHAR(30) UNIQUE NOT NULL,
     Password VARCHAR(255) NOT NULL,
     Profile_Image VARCHAR(255) DEFAULT 'images/default-profile.png',
-    created_at TIMESTAMP NULL DEFAULT NULL,
-    updated_at TIMESTAMP NULL DEFAULT NULL
+    created_at TIMESTAMP NULL DEFAULT current_timestamp,
+    updated_at TIMESTAMP NULL DEFAULT current_timestamp
 );
 
 CREATE TABLE Valoracion(
@@ -93,8 +109,8 @@ fk_idUsuario INT,
 fk_idRestaurante INT,
 Comentario TEXT,
 Valoracion INT,
-created_at TIMESTAMP NULL DEFAULT NULL,
-updated_at TIMESTAMP NULL DEFAULT NULL,
+created_at TIMESTAMP NULL DEFAULT current_timestamp,
+updated_at TIMESTAMP NULL DEFAULT current_timestamp,
 FOREIGN KEY (fk_idUsuario) REFERENCES Usuario (idUsuario),
 FOREIGN KEY (fk_idRestaurante) REFERENCES Restaurante(idRestaurante)
 );
