@@ -1,0 +1,49 @@
+/* Modo oscuro */
+
+body.dark-mode {
+    background-color: #121212;
+    color: #ddd;
+}
+
+body.dark-mode header {
+    background-color: #b00020;
+    color: #fff;
+}
+
+body.dark-mode nav {
+    background-color: #222;
+}
+
+body.dark-mode nav a {
+    color: #ccc;
+}
+
+body.dark-mode nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+body.dark-mode footer {
+    background-color: #222;
+    color: #ccc;
+}
+
+/* Botón modo oscuro */
+
+#dark-mode-toggle {
+    cursor: pointer;
+    padding: 0.3rem 0.8rem;
+    background: #444;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-size: 0.9rem;
+    float: right;
+    margin-top: -2.5rem;
+    margin-right: 1rem;
+}
+
+body.dark-mode #dark-mode-toggle {
+    background: #ddd;
+    color: #222;
+}
