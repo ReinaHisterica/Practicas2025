@@ -8,7 +8,7 @@ class Accesibilidad extends Model
 {
     protected $table = 'accesibilidad';
     protected $primaryKey = 'idAccesibilidad';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $fillable = [
         'idAccesibilidad'
     ];

@@ -9,5 +9,5 @@ class AccesibilidadTraduccion extends Model
     protected $table = 'accesibilidad_traduccion';
     protected $primaryKey = 'idAccesibilidadTraduccion';
     protected $fillable = ['Nombre', 'fk_idIdioma', 'fk_idAccesibilidad'];
-    public $timestamps = false;
+    public $timestamps = true;
 }
