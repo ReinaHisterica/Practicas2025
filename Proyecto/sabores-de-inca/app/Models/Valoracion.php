@@ -8,7 +8,7 @@ class Valoracion extends Model
 {
     protected $table = 'valoracion';
     protected $primaryKey = 'idValoracion';
-    public $timestamps = true;
+    // public $timestamps = true;
 
     protected $fillable = [
         'fk_idUsuario',
