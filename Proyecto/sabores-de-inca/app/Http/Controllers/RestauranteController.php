@@ -50,6 +50,10 @@ class RestauranteController extends Controller
             $query->where('Vegano', true);
         }
 
+        if ($request->has('tipoCocina') && $request->tipoCocina != 0) {
+            $query->where('fk_idTipoCocina', $request->tipoCocina);
+        }
+
         $query->orderByDesc('promedio_valoracion');
 
         return response()->json($query->get());
