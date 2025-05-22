@@ -142,14 +142,42 @@ document.addEventListener("DOMContentLoaded", () => {
         for (const id in tiposCocina) {
             const iconPath = iconosPorTipo[id]?.options.iconUrl || '';
             div.innerHTML += `
-                <div style="display: flex; align-items: center; margin-bottom: 4px;">
-                    <img src="${iconPath}" style="width: 20px; height: 30px; margin-right: 6px;">
-                    <span>${tiposCocina[id]}</span>
-                </div>
-            `;
+            <div class="leyenda-item" data-tipo="${id}" style="display: flex; align-items: center; margin-bottom: 4px; cursor: pointer;">
+                <img src="${iconPath}" style="width: 20px; height: 30px; margin-right: 6px;">
+                <span>${tiposCocina[id]}</span>
+            </div>
+        `;
         }
         return div;
     };
 
     leyenda.addTo(map);
+    // Variable para almacenar el tipo seleccionado, 0 = todos
+    let tipoSeleccionado = 0;
+
+    leyenda.addTo(map);
+
+    const leyendaDiv = document.querySelector('.info.legend');
+
+    leyendaDiv.addEventListener('click', (e) => {
+        e.preventDefault();
+        const item = e.target.closest('.leyenda-item');
+        if (!item) return;
+
+        const tipo = parseInt(item.dataset.tipo, 10);
+
+        // Si clicas en el mismo tipo, quitas el filtro (toggle)
+        tipoSeleccionado = (tipoSeleccionado === tipo) ? 0 : tipo;
+
+        // Aquí llamas a cargarRestaurantes con el nuevo filtro, conservando vegano por ejemplo
+        const vegano = checkboxVegano.checked ? 1 : 0;
+        cargarRestaurantes(vegano, tipoSeleccionado);
+
+        // Opcional: actualizar estilos para mostrar cuál está activo
+        document.querySelectorAll('.leyenda-item').forEach(el => el.style.fontWeight = '');
+        if (tipoSeleccionado !== 0) {
+            item.style.fontWeight = 'bold';
+        }
+    });
+
 });

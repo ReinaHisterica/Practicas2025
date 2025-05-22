@@ -5,8 +5,6 @@
 @vite('resources/js/restaurantes.js') <!-- Esto importa el JS solo en esta vista -->
 
 @section('contenido')
-<h2>Filtrar</h2>
-<label for="tipoCocina">Tipo de cocina:</label>
 <select id="tipoCocina">
     <!-- Opciones se llenan con JS -->
 </select>
