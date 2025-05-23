@@ -118,12 +118,13 @@ INSERT INTO TIPO_COCINA_TRADUCCION (Nombre, fk_idIdioma, fk_idTipoCocina) VALUES
 INSERT INTO TIPO_COCINA_TRADUCCION (Nombre, fk_idIdioma, fk_idTipoCocina) VALUES ("Chinese", 3, 10);
 INSERT INTO TIPO_COCINA_TRADUCCION (Nombre, fk_idIdioma, fk_idTipoCocina) VALUES ("Chinesisch", 4, 10);
 
+
 -- RESTAURANTES
 INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Natur Inca", "€€", 1, "+34 871 03 84 78", "https://natur.last.shop/es/", "Gran Via Colom, 44, 07300 Inca", "", 39.71835574458737, 2.9110263339405793,  9);
 INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Sushi Ninja", "€€", 1, "+34 971 66 75 95", "https://www.sushininja87.es/", "Avinguda del General Luque, 375, 07300 Inca", "", 39.71333628192145, 2.9040582485775395, 3);
 INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Yi Sushi", "€€", 1, "+34 655 40 06 30", "", "Av. Jaume I, 8, 07300, Inca", "", 39.720195313942455, 2.917191969911562, 3);
-INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Kebab Estación", "€-€€", "0", "+34 666 02 36 21", "", "Avenida del Tren 16, 07300, Inca", "", 39.7181193184143, 2.907546463809147, 5); # Tiene para llevar. Cierra Miércoles. Horario: de 12:00 a 00:00.
-INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Kebab Totbo", "€", "0 ", "+34 697 67 25 73", "", "Carrer Ponent, 6, 07300, Inca", "", 39.72000140728598, 2.908097811681922, 5); # Abre todos los días de 12:00 a 00:00. Tiene terraza y para llevar. # Aquí hay fotos: https://gastroranking.es/r/kebab-tot-bo_228643/. Info accesibilidad y más fotos: https://es.restaurantguru.com/Kebab-Tot-Bo-Inca.
+INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Kebab Estación", "€-€€", 0, "+34 666 02 36 21", "", "Avenida del Tren 16, 07300, Inca", "", 39.7181193184143, 2.907546463809147, 5); # Tiene para llevar. Cierra Miércoles. Horario: de 12:00 a 00:00.
+INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Kebab Totbo", "€", 0, "+34 697 67 25 73", "", "Carrer Ponent, 6, 07300, Inca", "", 39.720000140728598, 2.908097811681922, 5);
 INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Lipari - Stromboli", "€", "1" , "+34 971 88 05 01", "http://www.lipari-stromboli.es/", "Gran Via Colom, 07300, Inca", "", 39.71796422401055, 2.9113688619612503,  2); # Cartas descargadas en pdf. Cierra los martes. Más info: https://es.restaurantguru.com/STROMBOLI-Inca.
 INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Burger & Taco", "€€", 1, "+34 971 88 40 87", "https://burgerandtaco.es/", "Gran Via Colom, 119, 07300 Inca", "", 39.717816029667084, 2.912579883405243, 4); # Carta descargada en png. Cierra los martes. Info en: https://es.restaurantguru.com/Burger-and-Taco-Inca y en https://burgerandtaco.es/.
 INSERT INTO RESTAURANTE (Nombre, RangoPrecio, Vegano, Telefono, SitioWeb, Direccion, Carta, Latitud, Longitud, fk_idTipoCocina) VALUES ("Sexto Sentido", "€€€", 0, "+34 687 63 81 19", "https://sextosentidosmashburger.es/", "Gran Via Colom, 86, 07300 Inca", "", 39.718141377625095, 2.912780986151951, 4); # Cierra los lunes. Más info en: https://es.restaurantguru.com/Sexto-Sentido-Burguer-Smash-y-Hot-dog-Inca. Reservar, para llevar, a domicilio y silla de ruedas.
@@ -1421,6 +1422,6 @@ INSERT INTO RESTAURANTE_TRADUCCION (Descripcion, Horario, fk_idRestaurante, fk_i
 INSERT INTO RESTAURANTE_TRADUCCION (Descripcion, Horario, fk_idRestaurante, fk_idIdioma) VALUES (); */
 
 -- LATITUD Y LONGITUD
-UPDATE RESTAURANTE
-SET Latitud = 39.719479 AND Longitud = 2.9060211 WHERE idRestaurante = 5;
+/*UPDATE RESTAURANTE
+SET Latitud = 39.719479, Longitud = 2.9060211 WHERE idRestaurante = 5;*/
 
