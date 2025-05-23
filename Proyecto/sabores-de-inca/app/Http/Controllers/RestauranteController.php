@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class RestauranteController extends Controller
 {
-    // Index para mostrar todos los elementos de la tabla.
+    // Index para mostrar todos los elementos de la tabla. 
     public function index(Request $request)
     {
         // Empezamos la query con la relación de valoraciones
@@ -40,7 +40,7 @@ class RestauranteController extends Controller
     }
 
 
-    // Este método sería usado desde `api.php`
+    // Este método sería usado desde `api.php`. Devuelve datos en json.
     public function indexApi(Request $request)
     {
         $query = Restaurante::with('valoraciones')
@@ -52,6 +52,11 @@ class RestauranteController extends Controller
 
         if ($request->has('tipoCocina') && $request->tipoCocina != 0) {
             $query->where('fk_idTipoCocina', $request->tipoCocina);
+        }
+
+        if ($request->has('mediaMinima')) {
+            $mediaMinima = (int) $request->mediaMinima;
+            $query->having('promedio_valoracion', '>=', $mediaMinima);
         }
 
         $query->orderByDesc('promedio_valoracion');
