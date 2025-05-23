@@ -25,3 +25,7 @@ SELECT TRUNCATE((SUM(v.Valoracion) / COUNT(v.Valoracion)), 1) AS "Media" FROM Va
 ALTER TABLE valoracion
 ADD COLUMN created_at TIMESTAMP NULL,
 ADD COLUMN updated_at TIMESTAMP NULL;
+
+ALTER TABLE Restaurante
+ADD COLUMN created_at TIMESTAMP NULL,
+ADD COLUMN updated_at TIMESTAMP NULL;

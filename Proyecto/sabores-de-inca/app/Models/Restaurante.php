@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Restaurante extends Model
@@ -23,9 +25,9 @@ class Restaurante extends Model
     ];
 
     // Para obtener la media de las valoraciones. Primero, necesitamos una relación entre ambas tablas. Mirar la línea extra del controlador.
+    // Relación con valoraciones
     public function valoraciones()
-{
-    return $this->hasMany(Valoracion::class, 'fk_idRestaurante', 'idRestaurante');
-}
-
+    {
+        return $this->hasMany(Valoracion::class, 'fk_idRestaurante', 'idRestaurante');
+    }
 }

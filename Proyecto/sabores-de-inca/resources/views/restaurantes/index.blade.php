@@ -2,36 +2,35 @@
 
 @section('titulo', 'Lista de Restaurantes')
 
+@vite('resources/js/restaurantes.js') <!-- Esto importa el JS solo en esta vista -->
+
 @section('contenido')
-<h2>Filtrar</h2>
-<form method="POST">
-    <label for="vegano">¿Vegano?</label>
-    <input type="checkbox" id="vegano">
-    <!-- GOogle developer compte: api de google maps. Mapa en la portada amb tots els marcadors. -->
-    <!-- Posiblemente, en la base de datos tenga que añadir otro atributo en restaurantes que sea de latitud y otro de longitud (o altitud ???) -->
-</form>
+<h2>Flitros</h2>
+<select id="tipoCocina">
+    <!-- Opciones se llenan con JS -->
+</select>
+
+<label for="vegano">¿Vegano?</label>
+<input type="checkbox" id="vegano">
+
+<select id="filtroMedia">
+    <option value="0">Cualquier media</option>
+    <option value="1">⭐</option>
+    <option value="2">⭐⭐</option>
+    <option value="3">⭐⭐⭐</option>
+    <option value="4">⭐⭐⭐⭐</option>
+    <option value="5">⭐⭐⭐⭐⭐</option>
+</select>
+
 
 <h2>Lista de restaurantes</h2>
 
 @if ($restaurantes->isEmpty())
 <p>No hay restaurantes todavía.</p>
 @else
-<div class="restaurantes-container">
-    @foreach ($restaurantes as $restaurante)
-    <div class="restaurante-card">
-        <img src="{{ Storage::url($restaurante->Foto) }}" alt="Foto del restaurante">
-        <div class="details">
-            <h3>{{ $restaurante->Nombre }}</h3>
-            <p>{{ $restaurante->Direccion }}</p>
-            <p>Vegano: {{ $restaurante->Vegano ? 'Sí' : 'No' }}</p>
-            <p>Media:
-                {{ number_format(
-            $restaurante->valoraciones->avg('Valoracion'), 
-            1, '.', '') }}
-            </p>
-        </div>
-    </div>
-    @endforeach
+<div class="restaurantes-container" id="restaurantList">
+    @include('restaurantes._lista')
 </div>
+<div id="map" style="height: 500px; margin-top: 10rem; margin-bottom: 2rem;"></div>
 @endif
 @endsection
