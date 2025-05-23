@@ -4,8 +4,13 @@
     <div class="details">
         <h3>{{ $restaurante->Nombre }}</h3>
         <p>{{ $restaurante->Direccion }} 📍</p>
-        <p>Vegano: {{ $restaurante->Vegano ? 'Sí' : 'No' }}</p>
-        <p>Media:
+        @if ($restaurante->Vegano)
+        <p style="color:green">Vegano</p>
+            @else
+        <p style="color:red">No vegano</p>
+            @endif
+            <!-- <p style="color:green">{{ $restaurante->Vegano ? 'Vegano' : '' }}</p> -->
+        <p>
             {{ number_format($restaurante->promedio_valoracion ?? 0, 1, '.', '') }} ⭐
         </p>
     </div>

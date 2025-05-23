@@ -1,15 +1,27 @@
 @extends('layouts.app')
 
 @section('titulo', 'Lista de Restaurantes')
-@vite('resources/js/restaurantes.js') <!-- Esto importará el js exclusivamente en la página de los restaurantes. -->
+
+@vite('resources/js/restaurantes.js') <!-- Esto importa el JS solo en esta vista -->
+
 @section('contenido')
-<h2>Filtrar</h2>
-<form method="POST">
-    <label for="vegano">¿Vegano?</label>
-    <input type="checkbox" id="vegano">
-    <!-- GOogle developer compte: api de google maps. Mapa en la portada amb tots els marcadors. -->
-    <!-- Posiblemente, en la base de datos tenga que añadir otro atributo en restaurantes que sea de latitud y otro de longitud (o altitud ???) -->
-</form>
+<h2>Flitros</h2>
+<select id="tipoCocina">
+    <!-- Opciones se llenan con JS -->
+</select>
+
+<label for="vegano">¿Vegano?</label>
+<input type="checkbox" id="vegano">
+
+<select id="filtroMedia">
+    <option value="0">Cualquier media</option>
+    <option value="1">⭐</option>
+    <option value="2">⭐⭐</option>
+    <option value="3">⭐⭐⭐</option>
+    <option value="4">⭐⭐⭐⭐</option>
+    <option value="5">⭐⭐⭐⭐⭐</option>
+</select>
+
 
 <h2>Lista de restaurantes</h2>
 
@@ -17,10 +29,7 @@
 <p>No hay restaurantes todavía.</p>
 @else
 <div class="restaurantes-container" id="restaurantList">
-    <div class="restaurantes-container" id="restaurantList">
-        @include('restaurantes._lista')
-    </div>
-
+    @include('restaurantes._lista')
 </div>
 <div id="map" style="height: 500px; margin-top: 10rem; margin-bottom: 2rem;"></div>
 @endif
